@@ -1,210 +1,132 @@
-@charset "UTF-8";
-
-/* ============================================================
-   10주차 출석 과제 — 미니 포트폴리오 페이지
-
-   7가지 요구사항을 직접 작성하여 모두 동작하도록 완성하세요
-
-   [ 9주차 — Grid 기초 ]
-     □ 1. display: grid + grid-template-columns에 fr 단위 사용
-     □ 2. gap 속성으로 셀 간격 지정 (16px 이상)
-     □ 3. justify-content / align-items 등 정렬 속성 1가지 이상
-
-   [ 10주차 — Grid 심화 + sticky + 텍스트 ]
-     □ 4. grid-template-areas로 5섹션 (header·footer는 가로 전체)
-     □ 5. main 안 카드 갤러리 — auto-fit + minmax(220px, 1fr), 카드 6개 이상
-     □ 6. header(또는 nav)에 position: sticky; top: 0;
-     □ 7. 텍스트 속성 1가지 이상 (text-decoration / text-transform / text-indent)
-
-   ★ 디자인·색상·폰트·콘텐츠는 모두 자유.
-     7가지 요구사항만 정상 동작하면 통과(Pass).
-     완성도·창의성은 변별 요소로 평가됨.
-   ============================================================ */
-
-
-/* ─── 기본 reset (이미 작성됨) ─── */
-* { box-sizing: border-box; }
+/* 기본 스타일 초기화 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  line-height: 1.6;
-  /* TODO (선택): 본인 취향에 맞는 색상·배경 추가 */
-  background-image: url(../images/b.jpg);
-  object-fit: fill;
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-a { color: inherit; text-decoration: none; }
-
-
-/* ============================================================
-   [요구사항 #4]  페이지 전체 레이아웃 — grid-template-areas
-   ─ 5섹션(header·nav·main·aside·footer)을 배치
-   ─ header·footer는 가로 전체로 펼쳐지도록
-   ============================================================ */
-.page {
-  /* TODO */
-  display:grid;
-  gap: 16px;
-  grid-template-columns: 1fr 1fr 1fr ;
-  grid-template-rows: 80px 50px 1fr 60px;
-  grid-template-areas: 
-  "hd hd hd"
-  "nv nv nv"
-  "mn mn ad"
-  "ft ft ft";
+/* 상단 헤더 */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 30px 40px;
 }
 
-
-/* ============================================================
-   [요구사항 #6]  Header에 sticky 적용
-   [요구사항 #7]  텍스트 속성 (선택 위치 — 여기 또는 다른 곳)
-   ─ grid-area로 hd 영역 차지
-   ─ 페이지를 스크롤해도 화면 상단에 따라붙도록
-   ============================================================ */
-.header {
-  /* TODO */
-  position:sticky;
-  top:0;
-  grid-area: hd;
-  text-transform:capitalize;
-  z-index: 10;
-  background-color: rgba(9, 35, 39, 0.429);
-  color: aliceblue;
-}
-.header h1 {font-size: 20px}
-.header h2 {
-  font-size: 10px; 
-  font-weight: lighter;
-  text-indent: 1em;
+header h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
 }
 
-/* ─── nav ─── */
-.nav {
-  /* TODO (자유 디자인) */
-  display: flex;
-  align-items: center;
-  gap:30px;
-  padding:30px;
-  background-color:rgb(93, 93, 99) ;
-  color:rgb(183, 224, 249);
-  grid-area: nv;
-  font-weight: bold;
-
+header p {
+    font-size: 14px;
+    color: #bdc3c7;
 }
 
-
-/* ─── main ─── */
-.main {
-  /* TODO (자유 디자인) */
-  background-color: aliceblue;
-  padding: 24px;
-  border-radius: 12px;
-  grid-area: mn;
+/* 네비게이션 바 */
+nav {
+    background-color: #34495e;
+    padding: 12px 40px;
+    display: flex;
+    gap: 20px;
 }
 
-.main p{ text-indent: 1em;}
-
-/* ============================================================
-   [요구사항 #1·#2·#3]  W9 Grid 기초 종합
-   ─ #1: display: grid + grid-template-columns에 fr 단위
-   ─ #2: gap (16px 이상)
-   ─ #3: justify-content / align-items 등 정렬 속성
-        (.stats 자체에 적용해도 OK, .stat-box 자식에 flex로 적용해도 OK)
-   ============================================================ */
-.stats {
-  /* TODO */
-  display: grid ;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px; 
-  padding:16px ;
-  justify-content: center;
-  align-items:center ;
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-.stat-box {
-  /* TODO (자유 디자인 + 정렬) */
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-  border: 1px solid rgba(94, 94, 118, 0.539);
-
-}
-.num{ color: blue;
-  font-weight: bold;
-  
+nav a:hover, nav a.active {
+    color: #3498db;
 }
 
-.label{
-  display: block;
-  color:gray; 
-  font-weight: bold;
+/* 전체 레이아웃 컨테이너 */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
 }
 
-
-/* ============================================================
-   [요구사항 #5]  카드 갤러리 — auto-fit + minmax
-   ─ 카드 6개 이상이 화면 너비에 따라 자동으로 열 수 변경
-   ─ 한 카드의 최소 너비는 220px 권장
-   ============================================================ */
-.gallery {
-  /* TODO */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+/* 왼쪽 메인 영역 */
+.main-content {
+    flex: 2;
+    min-width: 0;
 }
 
-.card {
-  /* TODO (자유 디자인) */
-  font-family: "Poor Story", system-ui;
-  padding:20px;
-  border-radius: 12px;
-  text-align:left;
-  font-weight:bold;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0.071);
-  text-shadow: 2px 2px 4px rgb(54, 54, 57);
+.intro-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
 }
-.card1{ 
- background-image: url("../images/1.webp");
-}
-.card2{ 
- background-image: url("../images/2.jpg");
-}
-.card3{ 
- background-image: url("../images/3.webp");
-}
-.card4{ 
- background-image: url("../images/4.webp");
-}
-.card5{ 
- background-image: url("../images/5.webp");
-}
-.card6{ 
- background-image: url("../images/6.webp");
-}
-/* ─── aside ─── */
-.aside {
-  /* TODO (자유 디자인) */
-  background-color: rgb(181, 211, 236);
-  padding: 20px;
-  border-radius: 12px;
-  grid-area: ad;
-}
-.aside h3{text-decoration: underline;}
-.aside p{text-indent: 1em;}
 
-/* ─── footer ─── */
-.footer {
-  /* TODO (자유 디자인) */
- background-color: rgb(54, 54, 57);
- color: aliceblue;
- font-size: 15px;
- text-align: center;
- padding: 20x;
- grid-area: ft;
+.intro-box h2 {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 12px;
 }
+
+/* 통계/요약 카드 3개 */
+.stats-grid {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    color: #3498db;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* 아이템 카드 그리드 (6개) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.item-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 4px solid #3498db;
+}
+
+.item-card h3 {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.item-card p {
+    font-size: 13px;
+    color: #666;
+}
+
